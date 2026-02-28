@@ -57,7 +57,8 @@
   --shadow-blue: 0 8px 32px rgba(37,99,235,.28);
   --transition:  0.22s ease;
   --header-h:    64px;
-  --sticky-h:    120px; /* 헤더+칩 높이 (가림 방지용) */
+  --chips-gap:   16px;  /* 헤더와 칩 사이 여백 (겹침 방지) */
+  --sticky-h:    136px; /* 헤더 + 여백 + 칩 높이 */
 }
 
 html { scroll-behavior: smooth; }
@@ -375,12 +376,11 @@ img { max-width: 100%; display: block; }
    ============================================ */
 .nav-chips {
   position: sticky;
-  top: calc(var(--header-h) + env(safe-area-inset-top, 0));
+  top: calc(var(--header-h) + var(--chips-gap) + env(safe-area-inset-top, 0));
   z-index: 90;
   background: #ffffff;
   border-bottom: 1px solid var(--gray-100);
   box-shadow: 0 1px 3px rgba(0,0,0,.04);
-  /* 클리핑 방지: 부모 overflow 영향 차단 */
   isolation: isolate;
 }
 
@@ -426,7 +426,7 @@ img { max-width: 100%; display: block; }
 
 /* 모바일: 칩 잘림 방지 */
 @media (max-width: 640px) {
-  :root { --sticky-h: 130px; }
+  :root { --chips-gap: 16px; --sticky-h: 138px; }
   #about, #services, #stores, #reviews { scroll-margin-top: var(--sticky-h); }
   .header__inner { padding: 10px 16px; }
   .nav-chips__inner {
