@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "doorlock-web",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-l", "3300", "-s", "."],
+      "port": 3300
+    }
+  ]
+}
