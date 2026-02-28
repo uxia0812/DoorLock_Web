@@ -56,7 +56,7 @@
   --shadow-lg:   0 12px 48px rgba(0,0,0,.14);
   --shadow-blue: 0 8px 32px rgba(37,99,235,.28);
   --transition:  0.22s ease;
-  --header-h:    64px;
+  --header-h:    88px;   /* 로고 + 칩 포함 */
 }
 
 html { scroll-behavior: smooth; }
@@ -201,7 +201,6 @@ img { max-width: 100%; display: block; }
   position: sticky;
   top: 0;
   z-index: 100;
-  height: var(--header-h);
   background: #ffffff;
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--gray-100);
@@ -213,7 +212,9 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100%;
+  gap: 16px;
+  padding: 12px 0;
+  min-height: var(--header-h);
 }
 
 .logo {
@@ -222,6 +223,7 @@ img { max-width: 100%; display: block; }
   background: #ffffff;
   padding: 4px 0;
   border-radius: 4px;
+  flex-shrink: 0;
 }
 .logo__img {
   height: 48px;
@@ -234,7 +236,16 @@ img { max-width: 100%; display: block; }
   opacity: .95;
 }
 
-.header__cta { padding: 10px 22px; font-size: var(--text-sm); }
+.header__chips {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.header__cta { padding: 10px 22px; font-size: var(--text-sm); flex-shrink: 0; }
 
 /* ============================================
    HERO
@@ -357,33 +368,13 @@ img { max-width: 100%; display: block; }
   flex-shrink: 0;
 }
 
-/* ============================================
-   NAV CHIPS (섹션 바로 스크롤)
-   ============================================ */
-.nav-chips {
-  position: sticky;
-  top: var(--header-h);
-  z-index: 90;
-  background: #ffffff;
-  border-bottom: 1px solid var(--gray-100);
-  box-shadow: var(--shadow-xs);
-}
-
-.nav-chips__inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 12px 24px;
-  flex-wrap: wrap;
-}
-
+/* 헤더 내 칩 스타일 */
 .nav-chip {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px;
-  font-size: var(--text-sm);
+  padding: 6px 14px;
+  font-size: var(--text-xs);
   font-weight: 600;
   color: var(--gray-700);
   background: var(--gray-50);
@@ -405,23 +396,22 @@ img { max-width: 100%; display: block; }
   outline-offset: 2px;
 }
 
-/* 모바일: 가로 스크롤 또는 wrap */
+/* 모바일: 헤더 칩 가로 스크롤 */
 @media (max-width: 640px) {
-  .nav-chips { top: 56px; }
-  .nav-chips__inner {
-    padding: 10px 16px;
-    gap: 8px;
+  .header__inner { flex-wrap: wrap; padding: 10px 0; }
+  .header__chips {
+    order: 3;
+    width: 100%;
     justify-content: flex-start;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    padding-top: 8px;
+    border-top: 1px solid var(--gray-100);
+    margin-top: 4px;
   }
-  .nav-chips__inner::-webkit-scrollbar { display: none; }
-  .nav-chip {
-    flex-shrink: 0;
-    padding: 8px 16px;
-    font-size: var(--text-xs);
-  }
+  .header__chips::-webkit-scrollbar { display: none; }
+  .nav-chip { flex-shrink: 0; padding: 6px 12px; font-size: 0.7rem; }
 }
 
 /* ============================================
@@ -957,7 +947,7 @@ img { max-width: 100%; display: block; }
    RESPONSIVE — MOBILE (≤ 640px)
    ============================================ */
 @media (max-width: 640px) {
-  :root { --header-h: 56px; }
+  :root { --header-h: 100px; }  /* 모바일: 칩 2행으로 높이 증가 */
 
   .section { padding: 60px 0; }
 

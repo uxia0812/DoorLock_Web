@@ -95,7 +95,7 @@ function renderStoreCards(grid, stores) {
           <h3 class="store-card__name">${escapeHtml(store.location)}</h3>
           <div class="store-card__rating">
             <span class="stars">★★★★★</span>
-            <span class="rating-num">4.9</span>
+            <span class="rating-num">5</span>
           </div>
         </div>
         <span class="badge badge--open">영업중</span>

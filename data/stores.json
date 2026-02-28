@@ -1,17 +1,16 @@
 {
-  "_comment": "location은 지점명(예: 강서구점, 마포점)으로 수정 가능",
   "stores": [
-    { "id": "store-1", "location": "1호점", "naverMapUrl": "https://map.naver.com/p/entry/place/1616584891" },
-    { "id": "store-2", "location": "2호점", "naverMapUrl": "https://map.naver.com/p/entry/place/1047420520" },
-    { "id": "store-3", "location": "3호점", "naverMapUrl": "https://map.naver.com/p/entry/place/1460352013" },
-    { "id": "store-4", "location": "4호점", "naverMapUrl": "https://map.naver.com/p/entry/place/1264724497" },
-    { "id": "store-5", "location": "5호점", "naverMapUrl": "https://map.naver.com/p/entry/place/1001280853" },
-    { "id": "store-6", "location": "6호점", "naverMapUrl": "https://map.naver.com/p/entry/place/1434201512" },
-    { "id": "store-7", "location": "7호점", "naverMapUrl": "https://map.naver.com/p/entry/place/34217420" },
-    { "id": "store-8", "location": "8호점", "naverMapUrl": "https://map.naver.com/p/entry/place/1462686299" },
-    { "id": "store-9", "location": "9호점", "naverMapUrl": "https://map.naver.com/p/entry/place/1690742593" },
-    { "id": "store-10", "location": "10호점", "naverMapUrl": "https://map.naver.com/p/entry/place/1746437079" },
-    { "id": "store-11", "location": "11호점", "naverMapUrl": "https://map.naver.com/p/entry/place/1715043590" },
-    { "id": "store-12", "location": "12호점", "naverMapUrl": "https://map.naver.com/p/entry/place/1603971059" }
+    { "id": "store-1", "location": "가양점", "naverMapUrl": "https://map.naver.com/p/entry/place/1616584891" },
+    { "id": "store-2", "location": "방화점", "naverMapUrl": "https://map.naver.com/p/entry/place/1047420520" },
+    { "id": "store-3", "location": "화곡점", "naverMapUrl": "https://map.naver.com/p/entry/place/1460352013" },
+    { "id": "store-4", "location": "등촌점", "naverMapUrl": "https://map.naver.com/p/entry/place/1264724497" },
+    { "id": "store-5", "location": "염창점", "naverMapUrl": "https://map.naver.com/p/entry/place/1001280853" },
+    { "id": "store-6", "location": "목동 1호점", "naverMapUrl": "https://map.naver.com/p/entry/place/1434201512" },
+    { "id": "store-7", "location": "등촌점", "naverMapUrl": "https://map.naver.com/p/entry/place/34217420" },
+    { "id": "store-8", "location": "신정점", "naverMapUrl": "https://map.naver.com/p/entry/place/1462686299" },
+    { "id": "store-9", "location": "고척점", "naverMapUrl": "https://map.naver.com/p/entry/place/1690742593" },
+    { "id": "store-10", "location": "원흥점", "naverMapUrl": "https://map.naver.com/p/entry/place/1746437079" },
+    { "id": "store-11", "location": "백석점", "naverMapUrl": "https://map.naver.com/p/entry/place/1715043590" },
+    { "id": "store-12", "location": "주엽점", "naverMapUrl": "https://map.naver.com/p/entry/place/1603971059" }
   ]
 }

@@ -12,12 +12,39 @@
 </head>
 <body>
 
-  <!-- HEADER -->
+  <!-- TRUST BAR (칩 위) -->
+  <section class="trust-bar">
+    <div class="container trust-bar__inner">
+      <div class="trust-item">
+        <span class="trust-item__icon">🛡️</span>
+        <span>공식 자격증 보유</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-item__icon">⚡</span>
+        <span>20분 내 긴급 출동</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-item__icon">💰</span>
+        <span>설치시 출장비 0원</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-item__icon">✅</span>
+        <span>작업 후 보증 제공</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HEADER: 로고 + 바로가기 칩 + 전화 -->
   <header class="header" id="header">
     <div class="container header__inner">
       <a href="#" class="logo">
         <img src="images/logo.png" alt="비상24시 출장도어락/열쇠" class="logo__img" />
       </a>
+      <nav class="header__chips" aria-label="주요 섹션 바로가기">
+        <a href="#services" class="nav-chip">전문 서비스</a>
+        <a href="#stores" class="nav-chip">매장 정보</a>
+        <a href="#reviews" class="nav-chip">고객 후기</a>
+      </nav>
       <a href="tel:010-4727-7077" class="btn btn--call header__cta">
         <span>📞</span><span>지금 바로 전화</span>
       </a>
@@ -53,7 +80,7 @@
         </div>
         <div class="stat__divider"></div>
         <div class="stat">
-          <span class="stat__num">4.9★</span>
+          <span class="stat__num">5★</span>
           <span class="stat__label">네이버 평점</span>
         </div>
         <div class="stat__divider"></div>
@@ -61,37 +88,6 @@
           <span class="stat__num">20분</span>
           <span class="stat__label">평균 도착</span>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- NAV CHIPS: 섹션 바로 스크롤 -->
-  <nav class="nav-chips" id="navChips" aria-label="주요 섹션 바로가기">
-    <div class="container nav-chips__inner">
-      <a href="#services" class="nav-chip">전문 서비스</a>
-      <a href="#stores" class="nav-chip">매장 정보</a>
-      <a href="#reviews" class="nav-chip">고객 후기</a>
-    </div>
-  </nav>
-
-  <!-- TRUST BAR -->
-  <section class="trust-bar">
-    <div class="container trust-bar__inner">
-      <div class="trust-item">
-        <span class="trust-item__icon">🛡️</span>
-        <span>공식 자격증 보유</span>
-      </div>
-      <div class="trust-item">
-        <span class="trust-item__icon">⚡</span>
-        <span>20분 내 긴급 출동</span>
-      </div>
-      <div class="trust-item">
-        <span class="trust-item__icon">💰</span>
-        <span>출장비 0원</span>
-      </div>
-      <div class="trust-item">
-        <span class="trust-item__icon">✅</span>
-        <span>작업 후 보증 제공</span>
       </div>
     </div>
   </section>
@@ -156,9 +152,9 @@
           <p>스마트 도어락부터<br />디지털 도어락 전문 설치</p>
         </div>
         <div class="service-card">
-          <div class="service-card__icon">🗝️</div>
-          <h3>열쇠 복사·제작</h3>
-          <p>모든 종류의 열쇠 복사<br />특수 열쇠 제작 가능</p>
+          <div class="service-card__icon">🔧</div>
+          <h3>도어락·열쇠 수리</h3>
+          <p>도어락 고장·열쇠 수리<br />전문 진단 후 신속 처리</p>
         </div>
         <div class="service-card">
           <div class="service-card__icon">🏠</div>
@@ -204,7 +200,7 @@
         <p class="section__sub">실제 이용하신 고객분들의 솔직한 후기입니다</p>
         <div class="reviews__summary">
           <span class="reviews__stars">★★★★★</span>
-          <span class="reviews__score">4.9</span>
+          <span class="reviews__score">5</span>
           <span class="reviews__total">네이버 리뷰 743개 기준</span>
         </div>
       </div>
