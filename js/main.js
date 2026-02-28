@@ -2,13 +2,6 @@
    CONFIG — 실제 값으로 교체하세요
    ============================================ */
 const CONFIG = {
-  // 검색할 사업자명 (네이버 지역검색 쿼리)
-  // 사진에서 보이는 '강성24시출장열쇠번호키디지털도어락' 같은 정확한 상호명
-  brandName: '강성24시출장열쇠번호키디지털도어락',
-
-  // 표시할 매장 수
-  displayCount: 5,
-
   // 대표 전화 (헤더/히어로 CTA)
   mainPhone: '010-4727-7077',
 };
@@ -64,41 +57,28 @@ const CONFIG = {
 })();
 
 /* ============================================
-   네이버 지역검색 API → 매장 카드 동적 렌더링
+   매장 카드 동적 렌더링 (stores.json 기반)
    ============================================ */
 async function loadStores() {
   const grid    = document.getElementById('storesGrid');
   const loading = document.getElementById('storesLoading');
   if (!grid) return;
 
-  // 리뷰 데이터 불러오기
-  let reviewsData = { stores: [] };
-  try {
-    const r = await fetch('/data/reviews.json');
-    if (r.ok) reviewsData = await r.json();
-  } catch (_) {}
-
-  // 로딩 표시
   if (loading) loading.style.display = 'flex';
   grid.style.display = 'none';
 
   try {
-    // Vercel Serverless Function 호출
-    const res = await fetch(
-      `/api/naver-search?query=${encodeURIComponent(CONFIG.brandName)}&display=${CONFIG.displayCount}`
-    );
-
-    if (!res.ok) throw new Error('API 응답 오류');
+    const res = await fetch('/data/stores.json');
+    if (!res.ok) throw new Error('매장 데이터 로드 실패');
     const data = await res.json();
 
-    if (!data.items || data.items.length === 0) throw new Error('검색 결과 없음');
+    if (!data.stores || data.stores.length === 0) throw new Error('매장 정보 없음');
 
-    renderStoreCards(grid, data.items, reviewsData);
+    renderStoreCards(grid, data.stores);
 
   } catch (err) {
-    console.warn('[stores] API 실패, 폴백 데이터 사용:', err.message);
-    // API 실패 시 reviews.json의 fallback 데이터로 렌더링
-    renderFallbackCards(grid, reviewsData);
+    console.warn('[stores] 로드 실패:', err.message);
+    grid.innerHTML = '<p class="stores__error">매장 정보를 불러오는 중입니다. 잠시 후 다시 시도해 주세요.</p>';
   } finally {
     if (loading) loading.style.display = 'none';
     grid.style.display = '';
@@ -106,91 +86,32 @@ async function loadStores() {
   }
 }
 
-/* 네이버 API 응답 → 카드 렌더링 */
-function renderStoreCards(grid, items, reviewsData) {
-  grid.innerHTML = items.map((item, idx) => {
-    const storeReviews = reviewsData.stores[idx] || reviewsData.stores[0] || null;
-    const phone = item.telephone || CONFIG.mainPhone;
-    const naverUrl = storeReviews?.naverMapUrl || item.naverMapUrl;
-    const reviewCount = storeReviews?.reviews?.length || 0;
-    const ratingDisplay = storeReviews?.rating || '4.9';
-
-    return `
-      <div class="store-card" data-aos>
-        <div class="store-card__header">
-          <div>
-            <h3 class="store-card__name">${escapeHtml(item.title)}</h3>
-            <div class="store-card__rating">
-              <span class="stars">★★★★★</span>
-              <span class="rating-num">${ratingDisplay}</span>
-              ${reviewCount ? `<span class="review-count">(리뷰 ${reviewCount}개)</span>` : ''}
-            </div>
-          </div>
-          <span class="badge badge--open">영업중</span>
-        </div>
-        <div class="store-card__info">
-          <div class="info-row">
-            <span class="info-icon">📍</span>
-            <span>${escapeHtml(item.address)}</span>
-          </div>
-          ${phone ? `
-          <div class="info-row">
-            <span class="info-icon">📞</span>
-            <a href="tel:${phone.replace(/[^0-9]/g,'')}">${phone}</a>
-          </div>` : ''}
-          <div class="info-row">
-            <span class="info-icon">🕐</span>
-            <span>24시간 연중무휴</span>
+/* 매장 카드 렌더링 (전화번호 표시 제거, 전화 연결 버튼만) */
+function renderStoreCards(grid, stores) {
+  grid.innerHTML = stores.map((store) => `
+    <div class="store-card" data-aos>
+      <div class="store-card__header">
+        <div>
+          <h3 class="store-card__name">${escapeHtml(store.location)}</h3>
+          <div class="store-card__rating">
+            <span class="stars">★★★★★</span>
+            <span class="rating-num">4.9</span>
           </div>
         </div>
-        <div class="store-card__actions">
-          ${phone ? `<a href="tel:${phone.replace(/[^0-9]/g,'')}" class="btn btn--primary btn--sm">전화 연결</a>` : ''}
-          <a href="${escapeHtml(naverUrl)}" target="_blank" rel="noopener" class="btn btn--naver btn--sm">네이버 지도</a>
+        <span class="badge badge--open">영업중</span>
+      </div>
+      <div class="store-card__info">
+        <div class="info-row">
+          <span class="info-icon">🕐</span>
+          <span>24시간 연중무휴</span>
         </div>
       </div>
-    `;
-  }).join('');
-}
-
-/* API 실패 시 reviews.json 기반 폴백 */
-function renderFallbackCards(grid, reviewsData) {
-  if (!reviewsData.stores || reviewsData.stores.length === 0) {
-    grid.innerHTML = '<p class="stores__error">매장 정보를 불러오는 중입니다. 잠시 후 다시 시도해 주세요.</p>';
-    return;
-  }
-
-  grid.innerHTML = reviewsData.stores.map((store) => {
-    const reviewCount = store.reviews?.length || 0;
-    return `
-      <div class="store-card" data-aos>
-        <div class="store-card__header">
-          <div>
-            <h3 class="store-card__name">${escapeHtml(store.searchQuery.split(' ')[0])}</h3>
-            <div class="store-card__rating">
-              <span class="stars">★★★★★</span>
-              <span class="rating-num">4.9</span>
-              ${reviewCount ? `<span class="review-count">(리뷰 ${reviewCount}개)</span>` : ''}
-            </div>
-          </div>
-          <span class="badge badge--open">영업중</span>
-        </div>
-        <div class="store-card__info">
-          <div class="info-row">
-            <span class="info-icon">📞</span>
-            <a href="tel:${CONFIG.mainPhone.replace(/[^0-9]/g,'')}">${CONFIG.mainPhone}</a>
-          </div>
-          <div class="info-row">
-            <span class="info-icon">🕐</span>
-            <span>24시간 연중무휴</span>
-          </div>
-        </div>
-        <div class="store-card__actions">
-          <a href="tel:${CONFIG.mainPhone.replace(/[^0-9]/g,'')}" class="btn btn--primary btn--sm">전화 연결</a>
-          <a href="${escapeHtml(store.naverMapUrl)}" target="_blank" rel="noopener" class="btn btn--naver btn--sm">네이버 지도</a>
-        </div>
+      <div class="store-card__actions">
+        <a href="tel:${CONFIG.mainPhone.replace(/[^0-9]/g,'')}" class="btn btn--primary btn--sm">전화 연결</a>
+        <a href="${escapeHtml(store.naverMapUrl)}" target="_blank" rel="noopener" class="btn btn--naver btn--sm">네이버 지도</a>
       </div>
-    `;
-  }).join('');
+    </div>
+  `).join('');
 }
 
 /* ============================================
