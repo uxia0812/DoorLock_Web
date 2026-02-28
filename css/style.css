@@ -56,7 +56,7 @@
   --shadow-lg:   0 12px 48px rgba(0,0,0,.14);
   --shadow-blue: 0 8px 32px rgba(37,99,235,.28);
   --transition:  0.22s ease;
-  --header-h:    64px;
+  --header-h:    110px;
 }
 
 html { scroll-behavior: smooth; }
@@ -65,7 +65,7 @@ html { scroll-behavior: smooth; }
 #services,
 #stores,
 #reviews {
-  scroll-margin-top: 140px;
+  scroll-margin-top: 120px;
 }
 
 body {
@@ -211,19 +211,34 @@ img { max-width: 100%; display: block; }
   background: #ffffff;
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--gray-100);
-  box-shadow: var(--shadow-xs);
+  box-shadow: 0 1px 3px rgba(0,0,0,.04);
   transition: box-shadow var(--transition);
-  /* 모바일 노치·상단바 대응 */
   padding-top: env(safe-area-inset-top, 0);
+  overflow: visible;
 }
 
-.header__inner {
+.header__top {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 12px 0;
-  min-height: var(--header-h);
+  padding: 12px 24px;
+  min-height: 56px;
+}
+
+.header__chips {
+  padding: 8px 0 12px;
+  background: #ffffff;
+  border-top: 1px solid var(--gray-100);
+}
+
+.header__chips-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 0 24px;
 }
 
 .logo {
@@ -368,30 +383,7 @@ img { max-width: 100%; display: block; }
   flex-shrink: 0;
 }
 
-/* ============================================
-   NAV CHIPS (히어로·신뢰배너 밑)
-   ============================================ */
-.nav-chips {
-  position: sticky;
-  top: calc(var(--header-h) + env(safe-area-inset-top, 0));
-  z-index: 90;
-  background: #ffffff;
-  border-bottom: 1px solid var(--gray-100);
-  box-shadow: var(--shadow-xs);
-  /* 클리핑 방지 */
-  isolation: isolate;
-}
-
-.nav-chips__inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 12px 24px;
-  flex-wrap: wrap;
-  max-width: 1100px;
-  margin: 0 auto;
-}
+/* 헤더 내 바로가기 칩 */
 
 .nav-chip {
   display: inline-flex;
@@ -420,19 +412,18 @@ img { max-width: 100%; display: block; }
   outline-offset: 2px;
 }
 
-/* 모바일: 칩 줄바꿈으로 모두 표시, 잘림 방지 */
+/* 모바일: 칩 잘림 방지 */
 @media (max-width: 640px) {
-  #services, #stores, #reviews { scroll-margin-top: 120px; }
-  .nav-chips__inner {
-    padding: 10px 16px;
+  #services, #stores, #reviews { scroll-margin-top: 130px; }
+  .header__top { padding: 10px 16px; }
+  .header__chips { padding: 8px 0 10px; }
+  .header__chips-inner {
+    padding: 0 16px;
     gap: 8px;
-    justify-content: center;
-    flex-wrap: wrap;
-    overflow: visible;
   }
   .nav-chip {
     flex: 0 0 auto;
-    padding: 8px 14px;
+    padding: 6px 12px;
     font-size: 0.75rem;
   }
 }
@@ -970,7 +961,7 @@ img { max-width: 100%; display: block; }
    RESPONSIVE — MOBILE (≤ 640px)
    ============================================ */
 @media (max-width: 640px) {
-  :root { --header-h: 56px; }
+  :root { --header-h: 105px; }
 
   .section { padding: 60px 0; }
 

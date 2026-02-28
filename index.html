@@ -15,9 +15,9 @@
 </head>
 <body>
 
-  <!-- HEADER: 로고 + 전화 -->
+  <!-- HEADER: 로고 + 칩 + 전화 (고정) -->
   <header class="header" id="header">
-    <div class="container header__inner">
+    <div class="container header__top">
       <a href="#" class="logo">
         <img src="images/logo.png" alt="비상24시 출장도어락/열쇠" class="logo__img" />
       </a>
@@ -25,6 +25,13 @@
         <span>📞</span><span>지금 바로 전화</span>
       </a>
     </div>
+    <nav class="header__chips" aria-label="주요 섹션 바로가기">
+      <div class="container header__chips-inner">
+        <a href="#services" class="nav-chip">전문 서비스</a>
+        <a href="#stores" class="nav-chip">매장 정보</a>
+        <a href="#reviews" class="nav-chip">고객 후기</a>
+      </div>
+    </nav>
   </header>
 
   <!-- HERO: 가로형 기술자 사진 (ATF) -->
@@ -89,15 +96,6 @@
       </div>
     </div>
   </section>
-
-  <!-- NAV CHIPS (신뢰 배너 밑) -->
-  <nav class="nav-chips" id="navChips" aria-label="주요 섹션 바로가기">
-    <div class="nav-chips__inner">
-      <a href="#services" class="nav-chip">전문 서비스</a>
-      <a href="#stores" class="nav-chip">매장 정보</a>
-      <a href="#reviews" class="nav-chip">고객 후기</a>
-    </div>
-  </nav>
 
   <!-- SHOWCASE: 사진 + 신뢰 텍스트 -->
   <section class="section showcase section--light" id="about">
