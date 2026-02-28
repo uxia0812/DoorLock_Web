@@ -56,7 +56,7 @@
   --shadow-lg:   0 12px 48px rgba(0,0,0,.14);
   --shadow-blue: 0 8px 32px rgba(37,99,235,.28);
   --transition:  0.22s ease;
-  --header-h:    110px;
+  --header-h:    64px;
 }
 
 html { scroll-behavior: smooth; }
@@ -217,28 +217,13 @@ img { max-width: 100%; display: block; }
   overflow: visible;
 }
 
-.header__top {
+.header__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
   padding: 12px 24px;
-  min-height: 56px;
-}
-
-.header__chips {
-  padding: 8px 0 12px;
-  background: #ffffff;
-  border-top: 1px solid var(--gray-100);
-}
-
-.header__chips-inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  padding: 0 24px;
+  min-height: var(--header-h);
 }
 
 .logo {
@@ -383,7 +368,32 @@ img { max-width: 100%; display: block; }
   flex-shrink: 0;
 }
 
-/* 헤더 내 바로가기 칩 */
+/* ============================================
+   NAV CHIPS (신뢰배너 밑, 스크롤 시 헤더 밑 고정)
+   ============================================ */
+.nav-chips {
+  position: sticky;
+  top: calc(var(--header-h) + env(safe-area-inset-top, 0));
+  z-index: 90;
+  background: #ffffff;
+  border-bottom: 1px solid var(--gray-100);
+  box-shadow: 0 1px 3px rgba(0,0,0,.04);
+  /* 클리핑 방지: 부모 overflow 영향 차단 */
+  isolation: isolate;
+}
+
+.nav-chips__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  /* 잘림 방지 */
+  min-width: 0;
+}
 
 .nav-chip {
   display: inline-flex;
@@ -415,11 +425,11 @@ img { max-width: 100%; display: block; }
 /* 모바일: 칩 잘림 방지 */
 @media (max-width: 640px) {
   #services, #stores, #reviews { scroll-margin-top: 130px; }
-  .header__top { padding: 10px 16px; }
-  .header__chips { padding: 8px 0 10px; }
-  .header__chips-inner {
-    padding: 0 16px;
+  .header__inner { padding: 10px 16px; }
+  .nav-chips__inner {
+    padding: 10px 16px;
     gap: 8px;
+    justify-content: center;
   }
   .nav-chip {
     flex: 0 0 auto;
@@ -961,7 +971,7 @@ img { max-width: 100%; display: block; }
    RESPONSIVE — MOBILE (≤ 640px)
    ============================================ */
 @media (max-width: 640px) {
-  :root { --header-h: 105px; }
+  :root { --header-h: 56px; }
 
   .section { padding: 60px 0; }
 
