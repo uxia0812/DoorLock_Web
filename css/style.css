@@ -885,7 +885,15 @@ img { max-width: 100%; display: block; }
   .hero { min-height: auto; padding: 48px 0 24px; }
   .hero__inner { max-width: 100%; padding-bottom: 80px; }
 
-  .hero__actions { flex-direction: column; align-items: stretch; }
+  /* 모바일: 기술자 이미지 우측 쏠림 (잘리지 않게) */
+  .hero__photo img { object-position: 75% center; }
+
+  .hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 20px;
+    max-width: 100%;
+  }
   .hero__inner { text-align: center; }
   .hero__actions .btn { text-align: center; }
 
