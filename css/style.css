@@ -57,15 +57,17 @@
   --shadow-blue: 0 8px 32px rgba(37,99,235,.28);
   --transition:  0.22s ease;
   --header-h:    64px;
+  --sticky-h:    120px; /* 헤더+칩 높이 (가림 방지용) */
 }
 
 html { scroll-behavior: smooth; }
 
 /* 스크롤 앵커가 고정 헤더·칩에 가리지 않도록 */
+#about,
 #services,
 #stores,
 #reviews {
-  scroll-margin-top: 120px;
+  scroll-margin-top: var(--sticky-h);
 }
 
 body {
@@ -424,7 +426,8 @@ img { max-width: 100%; display: block; }
 
 /* 모바일: 칩 잘림 방지 */
 @media (max-width: 640px) {
-  #services, #stores, #reviews { scroll-margin-top: 130px; }
+  :root { --sticky-h: 130px; }
+  #about, #services, #stores, #reviews { scroll-margin-top: var(--sticky-h); }
   .header__inner { padding: 10px 16px; }
   .nav-chips__inner {
     padding: 10px 16px;
@@ -468,7 +471,10 @@ img { max-width: 100%; display: block; }
 /* ============================================
    SECTIONS 공통
    ============================================ */
-.section { padding: 88px 0; }
+.section {
+  padding: 88px 0;
+  padding-top: max(88px, var(--sticky-h));
+}
 
 .section--light { background: var(--white); }
 .section--soft  { background: var(--gray-50); }
@@ -973,7 +979,7 @@ img { max-width: 100%; display: block; }
 @media (max-width: 640px) {
   :root { --header-h: 56px; }
 
-  .section { padding: 60px 0; }
+  .section { padding: 60px 0; padding-top: max(60px, var(--sticky-h)); }
 
   .hero { min-height: auto; padding: 48px 0 24px; }
   .hero__inner { max-width: 100%; padding-bottom: 80px; }
