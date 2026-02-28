@@ -61,6 +61,13 @@
 
 html { scroll-behavior: smooth; }
 
+/* 스크롤 앵커가 고정 헤더·칩에 가리지 않도록 */
+#services,
+#stores,
+#reviews {
+  scroll-margin-top: 140px;
+}
+
 body {
   font-family: var(--font);
   font-size: var(--text-base);
@@ -206,6 +213,8 @@ img { max-width: 100%; display: block; }
   border-bottom: 1px solid var(--gray-100);
   box-shadow: var(--shadow-xs);
   transition: box-shadow var(--transition);
+  /* 모바일 노치·상단바 대응 */
+  padding-top: env(safe-area-inset-top, 0);
 }
 
 .header__inner {
@@ -364,11 +373,13 @@ img { max-width: 100%; display: block; }
    ============================================ */
 .nav-chips {
   position: sticky;
-  top: var(--header-h);
+  top: calc(var(--header-h) + env(safe-area-inset-top, 0));
   z-index: 90;
   background: #ffffff;
   border-bottom: 1px solid var(--gray-100);
   box-shadow: var(--shadow-xs);
+  /* 클리핑 방지 */
+  isolation: isolate;
 }
 
 .nav-chips__inner {
@@ -407,12 +418,13 @@ img { max-width: 100%; display: block; }
   outline-offset: 2px;
 }
 
-/* 모바일: 칩 가로 스크롤 */
+/* 모바일: 칩 가운데 정렬 */
 @media (max-width: 640px) {
+  #services, #stores, #reviews { scroll-margin-top: 120px; }
   .nav-chips__inner {
     padding: 10px 16px;
     gap: 8px;
-    justify-content: flex-start;
+    justify-content: center;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
