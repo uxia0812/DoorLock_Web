@@ -220,13 +220,17 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: var(--text-xl);
-  font-weight: 900;
-  color: var(--navy);
-  letter-spacing: -0.03em;
 }
-.logo__icon { font-size: 1.4rem; }
-.logo__text strong { color: var(--blue); }
+.logo__img {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+}
+.logo__img--footer {
+  height: 32px;
+  filter: brightness(0) invert(1);
+  opacity: .95;
+}
 
 .header__cta { padding: 10px 22px; font-size: var(--text-sm); }
 
@@ -515,6 +519,12 @@ img { max-width: 100%; display: block; }
   transition: transform 0.5s ease;
 }
 .showcase__photo:hover img { transform: scale(1.04); }
+
+/* 태블릿 들고 있는 부분 강조 (하단 우선 노출) */
+.showcase__photo--tablet img {
+  object-position: center 70%;
+  object-fit: cover;
+}
 
 .showcase__content { padding: 0 16px; }
 
@@ -867,7 +877,7 @@ img { max-width: 100%; display: block; }
 
   .showcase__layout { grid-template-columns: 1fr; gap: 40px; }
   .showcase__photos { max-width: 480px; margin: 0 auto; }
-  .showcase__content { padding: 0; }
+  .showcase__content { padding: 0; text-align: center; }
 
   .stat { padding: 0 18px; }
 
@@ -910,8 +920,11 @@ img { max-width: 100%; display: block; }
   .stores__grid,
   .reviews__grid { grid-template-columns: 1fr; }
 
-  .showcase__photos { grid-template-columns: 1fr 1fr; }
-  .showcase__photo--tall { grid-row: auto; }
+  /* 모바일: 데스크톱과 동일한 2열 사진 그리드 유지 */
+  .showcase__layout { gap: 32px; }
+  .showcase__photos { max-width: 100%; grid-template-columns: 1fr 1fr; }
+  .showcase__photo--tall { grid-row: span 2; }
+  .showcase__content { text-align: center; }
 
   .store-card__actions { flex-direction: column; }
 
