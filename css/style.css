@@ -56,7 +56,7 @@
   --shadow-lg:   0 12px 48px rgba(0,0,0,.14);
   --shadow-blue: 0 8px 32px rgba(37,99,235,.28);
   --transition:  0.22s ease;
-  --header-h:    88px;   /* 로고 + 칩 포함 */
+  --header-h:    64px;
 }
 
 html { scroll-behavior: smooth; }
@@ -236,15 +236,6 @@ img { max-width: 100%; display: block; }
   opacity: .95;
 }
 
-.header__chips {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex: 1;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
 .header__cta { padding: 10px 22px; font-size: var(--text-sm); flex-shrink: 0; }
 
 /* ============================================
@@ -368,7 +359,27 @@ img { max-width: 100%; display: block; }
   flex-shrink: 0;
 }
 
-/* 헤더 내 칩 스타일 */
+/* ============================================
+   NAV CHIPS (히어로·신뢰배너 밑)
+   ============================================ */
+.nav-chips {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 90;
+  background: #ffffff;
+  border-bottom: 1px solid var(--gray-100);
+  box-shadow: var(--shadow-xs);
+}
+
+.nav-chips__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px 24px;
+  flex-wrap: wrap;
+}
+
 .nav-chip {
   display: inline-flex;
   align-items: center;
@@ -396,21 +407,17 @@ img { max-width: 100%; display: block; }
   outline-offset: 2px;
 }
 
-/* 모바일: 헤더 칩 가로 스크롤 */
+/* 모바일: 칩 가로 스크롤 */
 @media (max-width: 640px) {
-  .header__inner { flex-wrap: wrap; padding: 10px 0; }
-  .header__chips {
-    order: 3;
-    width: 100%;
+  .nav-chips__inner {
+    padding: 10px 16px;
+    gap: 8px;
     justify-content: flex-start;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    padding-top: 8px;
-    border-top: 1px solid var(--gray-100);
-    margin-top: 4px;
   }
-  .header__chips::-webkit-scrollbar { display: none; }
+  .nav-chips__inner::-webkit-scrollbar { display: none; }
   .nav-chip { flex-shrink: 0; padding: 6px 12px; font-size: 0.7rem; }
 }
 
@@ -947,7 +954,7 @@ img { max-width: 100%; display: block; }
    RESPONSIVE — MOBILE (≤ 640px)
    ============================================ */
 @media (max-width: 640px) {
-  :root { --header-h: 100px; }  /* 모바일: 칩 2행으로 높이 증가 */
+  :root { --header-h: 56px; }
 
   .section { padding: 60px 0; }
 

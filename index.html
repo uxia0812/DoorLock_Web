@@ -12,39 +12,12 @@
 </head>
 <body>
 
-  <!-- TRUST BAR (칩 위) -->
-  <section class="trust-bar">
-    <div class="container trust-bar__inner">
-      <div class="trust-item">
-        <span class="trust-item__icon">🛡️</span>
-        <span>공식 자격증 보유</span>
-      </div>
-      <div class="trust-item">
-        <span class="trust-item__icon">⚡</span>
-        <span>20분 내 긴급 출동</span>
-      </div>
-      <div class="trust-item">
-        <span class="trust-item__icon">💰</span>
-        <span>설치시 출장비 0원</span>
-      </div>
-      <div class="trust-item">
-        <span class="trust-item__icon">✅</span>
-        <span>설치 후 보증 제공</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- HEADER: 로고 + 바로가기 칩 + 전화 -->
+  <!-- HEADER: 로고 + 전화 -->
   <header class="header" id="header">
     <div class="container header__inner">
       <a href="#" class="logo">
         <img src="images/logo.png" alt="비상24시 출장도어락/열쇠" class="logo__img" />
       </a>
-      <nav class="header__chips" aria-label="주요 섹션 바로가기">
-        <a href="#services" class="nav-chip">전문 서비스</a>
-        <a href="#stores" class="nav-chip">매장 정보</a>
-        <a href="#reviews" class="nav-chip">고객 후기</a>
-      </nav>
       <a href="tel:010-4727-7077" class="btn btn--call header__cta">
         <span>📞</span><span>지금 바로 전화</span>
       </a>
@@ -91,6 +64,37 @@
       </div>
     </div>
   </section>
+
+  <!-- TRUST BAR (히어로 밑) -->
+  <section class="trust-bar">
+    <div class="container trust-bar__inner">
+      <div class="trust-item">
+        <span class="trust-item__icon">🛡️</span>
+        <span>공식 자격증 보유</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-item__icon">⚡</span>
+        <span>20분 내 긴급 출동</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-item__icon">💰</span>
+        <span>설치시 출장비 0원</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-item__icon">✅</span>
+        <span>설치 후 보증 제공</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- NAV CHIPS (신뢰 배너 밑) -->
+  <nav class="nav-chips" id="navChips" aria-label="주요 섹션 바로가기">
+    <div class="container nav-chips__inner">
+      <a href="#services" class="nav-chip">전문 서비스</a>
+      <a href="#stores" class="nav-chip">매장 정보</a>
+      <a href="#reviews" class="nav-chip">고객 후기</a>
+    </div>
+  </nav>
 
   <!-- SHOWCASE: 사진 + 신뢰 텍스트 -->
   <section class="section showcase section--light" id="about">
@@ -205,11 +209,6 @@
         </div>
       </div>
       <div class="reviews__grid" id="reviewGrid"></div>
-      <div class="reviews__more">
-        <a href="https://map.naver.com" target="_blank" rel="noopener" class="btn btn--outline-dark btn--lg">
-          네이버 리뷰 전체 보기 →
-        </a>
-      </div>
     </div>
   </section>
 
